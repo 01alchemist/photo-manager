@@ -21,17 +21,12 @@ console.log(
 const mode =
   process.env.NODE_ENV === "production" ? "production" : "development";
 const isDevMode = mode === "development";
-const prodEntries = {
-  index: ["./src/index.ts"]
-};
 
 const outDir = "dist";
-const entries = isDevMode
-  ? {
-    ...prodEntries,
-    index: ["webpack/hot/poll?1000", "./src/index.ts"]
-  }
-  : prodEntries;
+const entries = {
+  index: ["./src/index.ts"],
+  worker: ["./src/worker/index.ts"]
+};
 
 fs.removeSync(path.resolve(__dirname, outDir));
 
